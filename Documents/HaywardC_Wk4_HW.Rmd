@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 source("C:/Users/cindyHayward/Desktop/ADM/Week_Four/Week4_GIT/Script/Bookbaskets.R")
 install.packages("arulesViz")
+options(scipen = 99 )#resolves scientific notation
+
 ```
 
 Case Study: Book displays at Flourish and Blotts
@@ -43,7 +45,9 @@ inspect(bookbaskets[1:5]) #Examine the first five transactions
 basketSizes<-size(bookbaskets) #Calculate number of books purchased by "userID"
 
 
-bookFreq<-itemFrequency(bookbaskets) #Calculate the support for each book title 
+
+bookFreq<-itemFrequency(bookbaskets) #Calculate the support for each book title
+#bookFreq
 
 
 bookCount <- (bookFreq/sum(bookFreq))*sum(basketSizes) 
@@ -83,6 +87,7 @@ Here is a different take. Let's say we want to look at the "top 20" items.
 
 ```{r}
 itemFrequencyPlot(bookbaskets, topN = 20) 
+
 ```
 
 
@@ -107,7 +112,7 @@ Con: computationally intensive. We have to keep comparing the candidate itemsets
 ## Exploring apriori() in arules Package
 
 ```{r}
-#?apriori
+?apriori
 ```
 
 ### Default parameter settings
@@ -121,20 +126,28 @@ minlen = minimum number of items in a rule. Default is 1.
 Let's try the default parameter settings first.
 
 ```{r}
+install.packages("opusminer")
+library("opusminer")
 apriori(bookbaskets)
+itemLabels(bookbaskets)
+
+#bookbaskets_noSeries <- apriori(bookbaskets, parameter = list(support = 0.0005, 
+                                                            #confidence = 0.9, minlen = 2, #maxlen = 10), appearance = list(none = c("token=!yo!", default="both")))
+#opus(bookbaskets, k = 100, format = "data.frame", sep = " ", print_closures = FALSE, #filter_itemsets = TRUE, search_by_lift = FALSE, correct_for_mult_compare = TRUE, #redundancy_tests = TRUE)
+
 ```
 
 Not a single rule found! Let's try again with some tweakings to the parameter settings.
 
 ```{r} 
-bookbasketsrules <- apriori(bookbaskets, parameter = list(support =
-                          0.001, confidence = 0.8, minlen = 2)) 
+bookbaskets_noAnimus <- apriori(bookbaskets, parameter = list(support =
+                          0.0009, confidence = 0.9, minlen = 2, maxlen = 10),appearance = list(none = c("Wild Animus"))) 
 ```
 
 Let's count the number of rules found
 
 ```{r}
-print(bookbasketsrules) 
+print(bookbaskets_noAnimus) 
 ```
 
 ## Evaluating Performance
@@ -142,7 +155,7 @@ print(bookbasketsrules)
 Let's look at the number of rules and number of items per rule.
 
 ```{r}
-summary(bookbasketsrules)
+summary(bookbaskets_noAnimus)
 ```
 
 Let's see what we found:
@@ -161,7 +174,7 @@ Total = 84 rules.
 Let's look at the first 10 rules. Please note the rules are not listed in the order of importance. lhs = Left hand side...meaning if they buy on the left side, they wiil buy what is on the right side.
 
 ```{r}
-inspect(bookbasketsrules[1:10]) 
+inspect(bookbaskets_noAnimus[1:10]) 
 ```
 
 ### Let's Talk About "Lift"!
@@ -193,15 +206,15 @@ Lift = 0.4108/0.2556 = 2.87
 Let's sort the rules by lift.
 
 ```{r}
-bookbasketsrules_sorted <- sort(bookbasketsrules, by = "lift")
+bookbaskets_sorted <- sort(bookbaskets_noAnimus, by = "lift")
 #inspect(groceryrules_sorted)
 ```
 
 And now by lift and confidence.
 
 ```{r}
-bookbasketsrules_sorted <-sort(bookbasketsrules, by = c("lift", "confidence"))
-#inspect(bookbasketsrules_sorted)
+bookbaskets_sorted <-sort(bookbaskets_noAnimus, by = c("lift", "confidence"))
+inspect(bookbasketsrules_sorted)
 ```
 
 ### Strong Rules. Actionable Rules.
@@ -217,15 +230,15 @@ Remember that there are always more trivial rules than non-trivial, actionable r
 Here we are looking at the subsets of rules containing "soups" items. Winter is approaching, and we know people buy soup during colder months. What else are they buying with soup?
 
 ```{r}
-qspace_rules <- subset(bookbasketsrules_sorted, items %in% " q-space")
-inspect(pokemon_rules)
+#qspace_rules <- subset(bookbasketsrules_sorted, items %in% " q-space")
+#inspect(pokemon_rules)
 ```
 
 
 Let's write the rules out to a CSV file.
 
 ```{r}
-write(bookbasketsrules_sorted, file = "C:/Users/cindyHayward/Desktop/ADM/Week_Four/Week4_GIT/Documents/bookbaksetsrules.csv",
+write(bookbasketsrules_sorted, file = "C:/Users/cindyHayward/Desktop/ADM/Week_Four/Week4_GIT/Documents/bookbasketsrules.csv",
       sep = ",", quote = TRUE, row.names = FALSE)
 ```
 
