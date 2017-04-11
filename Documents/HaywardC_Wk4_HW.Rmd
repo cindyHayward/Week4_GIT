@@ -1,4 +1,9 @@
 ---
+output:
+  html_document: default
+  word_document: default
+---
+---
 
 title: "HaywardC_Wk4_HW"
 author: "Cynthia Hayward"
@@ -120,8 +125,6 @@ inspect(bookbasket_bookClub)#The rules are not listed in the order of importance
 
 Lift measures "how much more likely an item is to be purchased relative to its typical purchase rate, given that you know another item has been purchased" (Lantz 2013, p. 261).
 
-Let's look at our rules when sorted by confidence(how often the rule is true) and lift.
-
 ```{r}
 bookbaskets_sorted <-sort(bookbasket_bookClub, by = c("lift", "confidence"))
 bookbaskets_rules_df <- as(bookbaskets_sorted, "data.frame")
@@ -134,7 +137,7 @@ write(bookbaskets_sorted, file = "C:/Users/cindyHayward/Desktop/ADM/Week_Four/We
 ```
 ###What Other Displays Should be Done?
 
-**Best Sellers**
+**Best Sellers**  
 We know these sell--so why not put them together?  A selection could look like:
 
 The Lovely Bones: A Novel  
@@ -142,11 +145,11 @@ She's Come Undone
 The Nanny Diaries: A Novel  
 A Painted House  
 
-**Firsts in the Series**
+**Firsts in the Series**  
 The manager knows that the reader of a series will continue to buy in the series.  We also identified that the strongest rules exist in book series.  Given this--why not set up a display of "First in the Series"?  A sampling of what this would look like is below:
 
 One for the Money  
-Harry Potter and the Sorcer's Stone
+Harry Potter and the Sorcer's Stone    
 The Girl with the Dragon Tatoo
 
 
