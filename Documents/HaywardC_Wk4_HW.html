@@ -200,15 +200,15 @@ $(document).ready(function () {
 ## 
 ## set item appearances ...[10 item(s)] done [0.00s].
 ## set transactions ...[170750 item(s), 40564 transaction(s)] done [0.38s].
-## sorting and recoding items ... [14103 item(s)] done [0.04s].
-## creating transaction tree ... done [0.01s].
+## sorting and recoding items ... [14103 item(s)] done [0.03s].
+## creating transaction tree ... done [0.02s].
 ## checking subsets of size 1 2 3 4 5 6</code></pre>
 <pre><code>## Warning in apriori(bookbasket_use, parameter = list(support = 0.00018,
 ## confidence = 0.85, : Mining stopped (maxlen reached). Only patterns up to a
 ## length of 6 returned!</code></pre>
-<pre><code>##  done [0.23s].
-## writing ... [10 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.03s].</code></pre>
+<pre><code>##  done [0.21s].
+## writing ... [10 rule(s)] done [0.02s].
+## creating S4 object  ... done [0.02s].</code></pre>
 <pre><code>##      lhs                             rhs                                                    support confidence      lift
 ## [1]  {The Deep End of the Ocean,                                                                                        
 ##       The Red Tent,                                                                                                     
@@ -264,16 +264,17 @@ $(document).ready(function () {
 <div id="confidence-and-lift" class="section level3">
 <h3>Confidence and Lift</h3>
 <p>Lift measures “how much more likely an item is to be purchased relative to its typical purchase rate, given that you know another item has been purchased” (Lantz 2013, p. 261).</p>
-<p>Let’s look at our rules when sorted by confidence(how often the rule is true) and lift.</p>
 </div>
 <div id="what-other-displays-should-be-done" class="section level3">
 <h3>What Other Displays Should be Done?</h3>
-<p><strong>Best Sellers</strong> We know these sell–so why not put them together? A selection could look like:</p>
+<p><strong>Best Sellers</strong><br />
+We know these sell–so why not put them together? A selection could look like:</p>
 <p>The Lovely Bones: A Novel<br />
 She’s Come Undone<br />
 The Nanny Diaries: A Novel<br />
 A Painted House</p>
-<p><strong>Firsts in the Series</strong> The manager knows that the reader of a series will continue to buy in the series. We also identified that the strongest rules exist in book series. Given this–why not set up a display of “First in the Series”? A sampling of what this would look like is below:</p>
+<p><strong>Firsts in the Series</strong><br />
+The manager knows that the reader of a series will continue to buy in the series. We also identified that the strongest rules exist in book series. Given this–why not set up a display of “First in the Series”? A sampling of what this would look like is below:</p>
 <p>One for the Money<br />
 Harry Potter and the Sorcer’s Stone<br />
 The Girl with the Dragon Tatoo</p>

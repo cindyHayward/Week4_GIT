@@ -1,1 +1,11 @@
-""
+"rules","support","confidence","lift"
+"{The Lovely Bones: A Novel,The Secret Life of Bees,Where The Heart Is,White Oleander : A Novel} => {A Map of the World}",0.000246524011438714,0.909090909090909,148.097845929171
+"{She's Come Undone,The Lovely Bones: A Novel,The Nanny Diaries: A Novel,The Red Tent,White Oleander : A Novel} => {We Were the Mulvaneys}",0.000197219209150971,0.888888888888889,138.148999574287
+"{She's Come Undone,The Lovely Bones: A Novel,Where The Heart Is,White Oleander : A Novel} => {While I Was Gone}",0.000295828813726457,0.923076923076923,119.628409928729
+"{A Painted House,The Lovely Bones: A Novel,The Secret Life of Bees,Where The Heart Is} => {While I Was Gone}",0.000197219209150971,0.888888888888889,115.197728079517
+"{She's Come Undone,The Lovely Bones: A Novel,The Red Tent,Where The Heart Is,White Oleander : A Novel} => {While I Was Gone}",0.000197219209150971,0.888888888888889,115.197728079517
+"{House of Sand and Fog,She's Come Undone,The Lovely Bones: A Novel,Where The Heart Is} => {The Reader}",0.000197219209150971,0.888888888888889,103.910342619276
+"{A Painted House,The Lovely Bones: A Novel,The Nanny Diaries: A Novel,Where The Heart Is} => {The Street Lawyer}",0.000221871610294843,0.9,89.4794117647059
+"{A Painted House,House of Sand and Fog,The Red Tent,The Secret Life of Bees} => {Girl with a Pearl Earring}",0.000197219209150971,1,78.7650485436893
+"{The Deep End of the Ocean,The Lovely Bones: A Novel,The Red Tent,White Oleander : A Novel} => {Divine Secrets of the Ya-Ya Sisterhood: A Novel}",0.000197219209150971,1,70.4236111111111
+"{The Deep End of the Ocean,The Red Tent,Where The Heart Is} => {Divine Secrets of the Ya-Ya Sisterhood: A Novel}",0.000197219209150971,0.888888888888889,62.5987654320988
